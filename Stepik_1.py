@@ -1,27 +1,45 @@
+from asyncio import log
+from math import log
+from math import sin
+from cmath import sin
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
-link = "http://suninjuly.github.io/registration1.html"
+link = "http://suninjuly.github.io/explicit_wait2.html"
 
 try:
     browser = webdriver.Chrome()
     browser.get(link)
+    
 
-    link_1 = browser.find_element(By.CSS_SELECTOR, "input[placeholder='Input your first name']")
-    link_1.send_keys('Pavel')
-    link_2 = browser.find_element(By.CSS_SELECTOR, "input[placeholder='Input your last name']")
-    link_2.send_keys('Levap')
-    link_3 = browser.find_element(By.CSS_SELECTOR, "input[placeholder='Input your email']")
-    link_3.send_keys('stepik@mail.com')
-    link_4 = browser.find_element(By.CSS_SELECTOR, "input[placeholder='Input your phone:']")
-    link_4.send_keys('00000000')
-    link_5 = browser.find_element(By.CSS_SELECTOR, "input[placeholder='Input your address:']")
-    link_5.send_keys('Ukraine')
-    button = browser.find_element(By.CSS_SELECTOR, "button[class='btn btn-default']")
-    button.click()
+    price = WebDriverWait(browser, "13").until(EC.text_to_be_present_in_element((By.ID, 'price'), '$100'))
+    browser.find_element(By.ID, 'book').click()
+
+
+    p = browser.find_element(By.ID, 'input_value').text
+    b = int(p)
+    y = log(abs(12*sin(b)))
+
+    browser.find_element(By.ID, 'answer').send_keys(y)
+    
+    button = browser.find_element(By.ID, 'solve').click()
 
 finally:
-    time.sleep(2)
-    browser.quit()
+    time.sleep()
+    browser.close()
+
+
+
+
+
+
+
+
+
+
+
+
 
