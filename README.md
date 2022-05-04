@@ -1,1 +1,1 @@
-# stepik_auto_tests
+# "homework from previous module"
